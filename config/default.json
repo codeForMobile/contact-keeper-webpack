@@ -1,0 +1,4 @@
+{
+  "mongoURI" : "mongodb+srv://codenode:Elisa8348@cluster0.jkwis.mongodb.net/ContactKeeper?retryWrites=true&w=majority",
+  "jwtSecret": "secret"
+}
