@@ -1,4 +1,4 @@
-### KeeperContact2
+### contact keeper
 This app is a redo of brad traversy's contact keeper tutorial.
 
 ### Sample output from jsdoc
