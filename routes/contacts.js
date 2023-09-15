@@ -8,6 +8,11 @@ const auth = require('../middleware/auth')
 // @route   GET api/contacts
 // @desc    Get all contacts of a user
 // @access  Private
+/**
+ * Get all contacts of a user
+ * @async
+ * @name  /api/contacts
+ */
 router.get('/', auth, async (req,res) => {
   try {
     const contacts = await Contact.find({ user: req.user.id}).sort({ date: -1 })

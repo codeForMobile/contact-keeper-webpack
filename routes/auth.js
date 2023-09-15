@@ -7,9 +7,11 @@ const User = require('../models/User')
 const config = require('config')
 const auth = require('../middleware/auth')
 
-// @route   GET api/auth
-// @desc    Get logged in user
-// @access  Private
+/**
+ * Get Logged in user
+ * @async
+ * @name /api/
+ */
 router.get('/', auth, async (req,res) => {
   try {
     const user = await User.findById(req.user.id).select("-password")
@@ -20,9 +22,13 @@ router.get('/', auth, async (req,res) => {
   }
 })
 
-// @route   POST api/auth
-// @desc    Auth user and get token
-// @access  Public
+/**
+ * Authenticate user and return token
+ * @async
+ * @name /api/
+ * @param {string} email
+ * @param {sting} password
+ */
 router.post('/', [
   body('email', 'Email is required').isEmail(),
   body('password', 'Password is requierd').not().isEmpty()
