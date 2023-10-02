@@ -1,6 +1,8 @@
 const express = require('express')
-const connectDB = require('./config/db')
+require('dotenv').config();
+
 const app = express()
+const connectDB =require('./config/db')
 
 // db 
 connectDB();
@@ -8,7 +10,7 @@ connectDB();
 // bodyparser
 app.use(express.json({ extended : false}))
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 6000
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
 
 app.get('/', (req,res) => res.json({ msg: 'Welcome to api...'}))
