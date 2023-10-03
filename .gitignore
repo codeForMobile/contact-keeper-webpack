@@ -15,6 +15,7 @@
 
 # misc
 .env
+.vscode/*
 frontend/.env
 .DS_Store
 .env.local

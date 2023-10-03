@@ -9,7 +9,9 @@
     "client": "npm start --prefix client",
     "clientinstall": "npm install --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "doc": "jsdoc -r ./routes -d ./js_doc -c ./jsdoc.config.json"
+    "doc": "jsdoc -r ./routes -d ./js_doc -c ./jsdoc.config.json",
+    "clean": "rimraf ./client/build",
+    "build": "npm install && npm install --prefix client && npm run clean && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +21,8 @@
     "express": "^4.18.1",
     "express-validator": "^6.14.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.2"
+    "mongoose": "^6.3.2",
+    "rimraf": "^5.0.5"
   },
   "devDependencies": {
     "concurrently": "^7.1.0",

@@ -18,7 +18,7 @@ const Contacts = () => {
   }
   return (
     <Fragment>
-      { contacts !== null & !loading ? (<TransitionGroup>
+    { contacts !== null && !loading ? (<TransitionGroup>
       {filtered !== null ? filtered.map((contact) => 
         <CSSTransition key={contact._id} timeout={500} classNames="item">
         <ContactItem contact={contact} />
@@ -26,9 +26,8 @@ const Contacts = () => {
         ) :contacts.map((contact) => 
         <CSSTransition key={contact._id} timeout={500} classNames="item">
         <ContactItem contact={contact} />
-        </CSSTransition>
-      )}
-      </TransitionGroup>) : <Spinner/>}
+        </CSSTransition>)}
+    </TransitionGroup>): <Spinner/>}
     </Fragment>
   )
 }
