@@ -1,16 +1,19 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import ContactContext from '../../context/contact/contactContext'
+import {
+  useContacts,
+  deleteContact,
+  setCurrent,
+  clearCurrent
+} from '../../context/contact/ContactState'
 
 const ContactItem = ({ contact }) => {
-  const contactContext = useContext(ContactContext)
-  const { deleteContact, setCurrent, clearCurrent } = contactContext
-
+  const contactDispatch = useContacts()[1]
   const { _id, name, email, phone, type } = contact
 
   const onDelete = () => {
-    deleteContact(_id);
-    clearCurrent()
+    deleteContact(contactDispatch, _id);
+    clearCurrent(contactDispatch)
   }
   return (
     <div className='card bg-light'>

@@ -1,26 +1,24 @@
-import React, { useContext, useRef, useEffect } from 'react'
-import ContactContext from '../../context/contact/contactContext'
+import React from 'react'
+import {
+  useContacts,
+  filterContacts,
+  clearFilter
+} from '../../context/contact/ContactState'
 
 const ContactFilter = () => {
-  const contactContext = useContext(ContactContext)
-  const text = useRef('')
+  const contactDispatch = useContacts()[1]
 
-  useEffect(() => {
-    if(contactContext.filtered === null) {
-      text.current.value = ''
-    }
-  })
   const onChange= e => {
     if(e.target.value !== '') {
-      contactContext.filterContacts(e.target.value)
+      filterContacts(contactDispatch,e.target.value)
     } else {
-      contactContext.clearFilter()
+      clearFilter(contactDispatch)
     }
   }
 
   return (
-    <form>
-      <input type="text" placeholder="Enter search term..." ref={text} onChange={onChange}/>
+    <form onSubmit={(e) => e.preventDefault()}>
+      <input type="text" placeholder="Enter search term..." onChange={onChange}/>
     </form>
   )
 }
