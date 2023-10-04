@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {
   useContacts,
@@ -26,7 +26,7 @@ const ContactItem = ({ contact }) => {
         {phone && <li><i className="fas fa-phone"></i> {phone}</li> }
       </ul>
       <p>
-        <button className="btn btn-primary btn-sm" onClick={() => setCurrent(contact)}>Edit</button>
+        <button className="btn btn-primary btn-sm" onClick={() => setCurrent(contactDispatch, contact)}>Edit</button>
         <button className="btn btn-danger btn-sm" onClick={onDelete}>Delete</button>
       </p>
     </div>

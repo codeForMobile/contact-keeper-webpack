@@ -23,12 +23,15 @@ export const useContacts = () => {
 
   // Get contacts
 export const getContacts = async (dispatch) => {
-  try {
-    const res = await axios.get('/api/contacts')
-    dispatch({type: GET_CONTACTS, payload: res.data})
-  } catch (err) {
-    dispatch({ type: CONTACT_ERROR, payload: err?.response?.msg})
-  }
+ 
+  const res = await axios.get('/api/contacts')
+   .then (res => {
+    if(Array.isArray(res.data)) {
+      dispatch({type: GET_CONTACTS, payload: res.data})
+      }
+    }).catch ((err) =>
+      dispatch({ type: CONTACT_ERROR, payload: err?.response?.msg})
+   ) 
 }
 
 // Add contact

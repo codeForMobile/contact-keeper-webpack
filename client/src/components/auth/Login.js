@@ -1,25 +1,21 @@
 import React, { useState, useContext, useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
 import AlertContext from '../../context/alert/alertContext'
-import AuthContext from '../../context/auth/authContext'
+import { useAuth, clearErrors, login } from '../../context/auth/AuthState'
 
 const Login = (props) => {
   const alertContext = useContext(AlertContext)
-  const authContext = useContext(AuthContext)
-
   const { setAlert } = alertContext
-  const { login, error, clearErrors, isAuthenticated } = authContext
+  
+  const [authState, authDispatch] = useAuth()
+  const { error, isAuthenticated } = authState
 
   useEffect(() => {
-    if(isAuthenticated) {
-      props.history.push('/')
-    }
-
     if(error === 'Invalid Credentials') {
       setAlert(error, 'danger')
-      clearErrors()
+      clearErrors(authDispatch)
     }
-    // eslint-disable-next-line
-  }, [error, props.history, isAuthenticated])
+  }, [error, isAuthenticated, authDispatch, setAlert])
   
   const [user, setUser] = useState({
     email:'',
@@ -35,12 +31,14 @@ const Login = (props) => {
     if(email === '' || password === ''){
       setAlert('Please fill in all fields', 'danger')
     } else {
-      login({
+      login(authDispatch, {
         email,
         password
       })
     }
   }
+
+  if (isAuthenticated) return <Navigate to='/'/>
 
   return (
     <div className='form-container'>

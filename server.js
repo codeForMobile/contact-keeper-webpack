@@ -11,6 +11,11 @@ connectDB();
 // bodyparser
 app.use(express.json({ extended : false}))
 
+// routes
+app.use('/api/contacts', require('./routes/contacts'))
+app.use('/api/users', require('./routes/users'))
+app.use('/api/auth', require('./routes/auth'))
+
 if (process.env.NODE_ENV !=='development') {
 
     //set static folder
@@ -25,8 +30,3 @@ if (process.env.NODE_ENV !=='development') {
 
 const PORT = process.env.PORT || 6060
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
-
-// routes
-app.use('/api/contacts', require('./routes/contacts'))
-app.use('/api/users', require('./routes/users'))
-app.use('/api/auth', require('./routes/auth'))
