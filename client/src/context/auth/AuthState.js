@@ -61,7 +61,7 @@ import {
         payload: res.data,
       })
 
-      await loadUser(dispatch)
+      loadUser(dispatch)
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,

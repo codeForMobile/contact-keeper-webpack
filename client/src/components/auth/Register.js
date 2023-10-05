@@ -37,7 +37,7 @@ const Register = (props) => {
     } else if (password !== password2) {
       setAlert('Passwords do not match...', 'danger')
     } else {
-      register({
+      register(authDispatch, {
         name,
         email,
         password
