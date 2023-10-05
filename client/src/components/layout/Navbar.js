@@ -7,7 +7,6 @@ import { useContacts, clearContacts } from '../../context/contact/ContactState'
 const Navbar = ({ title, icon }) => {
   const [authState, authDispatch] = useAuth()
   const {isAuthenticated, user} = authState
-  console.log('user value', user)
 
   const contactDispatch = useContacts()[1]
 

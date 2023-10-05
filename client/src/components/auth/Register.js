@@ -33,9 +33,9 @@ const Register = (props) => {
     e.preventDefault()
     
     if(name === '' || email === '' || password === '' ) {
-      setAlert('Please enter all credentials...', 'danger')
+      setAlert(' Please enter all credentials...', 'danger')
     } else if (password !== password2) {
-      setAlert('Passwords do not match...', 'danger')
+      setAlert(' Passwords do not match...', 'danger')
     } else {
       register(authDispatch, {
         name,
@@ -61,11 +61,23 @@ const Register = (props) => {
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" name='password' value={password} onChange={onChange}/>
+            <input
+            type="password"
+            name='password'
+            value={password}
+            onChange={onChange}
+            minLength={6}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="password2">Confirm Password</label>
-            <input type="password" name='password2' value={password2} onChange={onChange}/>
+            <input
+            type="password"
+            name='password2'
+            value={password2}
+            onChange={onChange}
+            minLength={6}
+            />
           </div>
           <input type="submit" value="Register" className='btn btn-primary btn-block' />
         </form>

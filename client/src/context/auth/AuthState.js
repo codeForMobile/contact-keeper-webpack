@@ -24,7 +24,6 @@ import {
   export const loadUser = async (dispatch) => {
     try {
       const res = await axios.get('/api/auth')
-      console.log('response from api call', res.data)
       dispatch({
         type: USER_LOADED,
         payload: res.data,

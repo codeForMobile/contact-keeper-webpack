@@ -12,7 +12,6 @@ import {
 export default (state, action) => {
   switch (action.type) {
     case USER_LOADED:
-      console.log('user from reducer', action.payload)
       return {
         ...state,
         isAuthenticated: true,
