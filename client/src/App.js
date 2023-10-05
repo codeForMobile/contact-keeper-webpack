@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
+import NotFound from './components/pages/NotFound'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Alerts from './components/layout/Alerts'
@@ -29,6 +30,7 @@ const App = () => {
          <Route path="/about" element={<About/>} />
          <Route path="/register" element={<Register/>} />
          <Route path="/login" element={<Login/>} />
+         <Route path="*" element={<NotFound/>} />
       </Routes>
       </div>
     </Fragment>
