@@ -10,7 +10,7 @@
     "clientinstall": "npm install --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "doc": "jsdoc -r ./routes -d ./js_doc -c ./jsdoc.config.json",
-    "clean": "rimraf ./client/build",
+    "clean": "npm cache clean --force && rimraf ./client/build",
     "build": "npm install && npm install --prefix client && npm run clean && npm run build --prefix client"
   },
   "keywords": [],
