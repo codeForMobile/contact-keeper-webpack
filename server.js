@@ -1,8 +1,34 @@
 const path = require('path')
 const express = require('express')
+const helmet = require('helmet')
+const nocache = require('nocache')
+const cors = require('cors')
 require('dotenv').config();
 
 const app = express()
+
+//  cors config
+const CorsOptions = {
+    allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'X-auth-token'],
+    methods: 'GET,PUT,POST,DELETE',
+    preflightContinue: false,
+    maxAge: 1800
+  }
+
+// helmet stuff
+app.use(helmet.dnsPrefetchControl())
+app.use(helmet.hidePoweredBy())
+app.use(helmet.noSniff())
+app.use(helmet.hsts())
+app.use(helmet.ieNoOpen())
+app.use(helmet.xssFilter())
+// nocache
+app.use(nocache())
+
+// cors fixing
+app.use(cors(CorsOptions))
+
+//db connection
 const connectDB =require('./config/db')
 
 // db 
