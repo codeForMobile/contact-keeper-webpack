@@ -1,9 +1,9 @@
+require('dotenv').config()
 const path = require('path')
 const express = require('express')
 const helmet = require('helmet')
 const nocache = require('nocache')
 const cors = require('cors')
-require('dotenv').config();
 
 const app = express()
 
