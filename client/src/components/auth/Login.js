@@ -63,7 +63,7 @@ const Login = (props) => {
           </div>
           <div >
             <ReCAPTCHA className='captcha'
-            sitekey='6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+            sitekey='6Lfp4ZgoAAAAAAqruM038WQXYR8yuuOWJjczVORm'
             onChange={onCaptchaHandler}
             />
           </div>
