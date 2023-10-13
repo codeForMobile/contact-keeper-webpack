@@ -419,6 +419,11 @@ table th {
   transition: opacity 1000ms ease-in;
 }
 
+.captcha {
+  transform:scale(0.77);
+  margin-left: 50px;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .hide-sm {
@@ -457,5 +462,10 @@ table th {
   .navbar ul {
     text-align: center;
     justify-content: center;
+  }
+
+  .captcha {
+    transform:scale(0.77);
+    margin-left: -20px;
   }
 }

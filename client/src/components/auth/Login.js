@@ -2,10 +2,12 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import AlertContext from '../../context/alert/alertContext'
 import { useAuth, clearErrors, login } from '../../context/auth/AuthState'
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Login = (props) => {
   const alertContext = useContext(AlertContext)
   const { setAlert } = alertContext
+  const [captcha, setCaptcha] = useState(false)
   
   const [authState, authDispatch] = useAuth()
   const { error, isAuthenticated } = authState
@@ -30,12 +32,18 @@ const Login = (props) => {
     e.preventDefault()
     if(email === '' || password === ''){
       setAlert('Please fill in all fields', 'danger')
+    } else if (captcha === false) {
+      setAlert('Please complete captcha validation', 'danger')
     } else {
       login(authDispatch, {
         email,
         password
       })
     }
+  }
+
+  const onCaptchaHandler = _ => {
+    setCaptcha({ captcha: true})
   }
 
   if (isAuthenticated) return <Navigate to='/'/>
@@ -53,7 +61,17 @@ const Login = (props) => {
             <label htmlFor="password">Password</label>
             <input type="password" name='password' value={password} onChange={onChange}/>
           </div>
-          <input type="submit" value="Login" className='btn btn-primary btn-block' />
+          <div >
+            <ReCAPTCHA className='captcha'
+            sitekey='6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+            onChange={onCaptchaHandler}
+            />
+          </div>
+          <input
+          type="submit"
+          value="Login"
+          className='btn btn-primary btn-block'
+          />
         </form>
     </div>
   )
