@@ -21,7 +21,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack",
+    "build": "webpack",
     "build-dev": "webpack",
     "start": "webpack serve"
   },
