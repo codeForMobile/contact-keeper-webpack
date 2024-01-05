@@ -2,14 +2,14 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
-const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const auth = require('../middleware/auth')
+const generateToken = require('../utils/generateToken')
 
 /**
  * Get Logged in user
  * @async
- * @name /api/
+ * @name /api/auth/
  */
 router.get('/', auth, async (req,res) => {
   try {
@@ -22,9 +22,29 @@ router.get('/', auth, async (req,res) => {
 })
 
 /**
+ * Logout user
+ * @async
+ * @name /api/auth/logout
+ */
+router.get('/logout', async (_,res) => {
+  try {
+    res.cookie('jwt', '', {
+      httpOnly: true, 
+      secure: process.env.NODE_ENV !== 'development',
+      sameSite: 'strict',
+      maxAge: new Date(0)
+    })
+    res.status(200).json({ msg : 'logged out'})
+  } catch (err) {
+    console.error(err.message)
+    return res.status(500).send('Server Error!!')
+  }
+})
+
+/**
  * Authenticate user and return token
  * @async
- * @name /api/
+ * @name /api/auth
  * @param {string} email
  * @param {sting} password
  */
@@ -55,11 +75,9 @@ router.post('/', [
         id: user.id
       }
     }
-    jwt.sign(payload, process.env.jwtSecret, {
-      expiresIn: 36000
-    }, (err, token) => {
-      if(err) throw err;
-      res.json({ token })
+    const token = generateToken(res, payload)
+    res.status(201).json({
+      token
     })
   } catch (err) {
     console.error(err.message)

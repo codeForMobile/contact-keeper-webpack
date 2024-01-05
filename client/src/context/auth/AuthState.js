@@ -70,7 +70,10 @@ import {
   }
 
   // Logout
-  export const logout = (dispatch) => dispatch({ type: LOGOUT })
+  export const logout = async (dispatch) => {
+    const res = await axios.get('/api/auth/logout')
+    dispatch({ type: LOGOUT })
+  }
 
   // Clear Errors
   export const clearErrors = (dispatch) => dispatch({ type: CLEAR_ERRORS })

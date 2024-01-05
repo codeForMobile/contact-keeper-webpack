@@ -3,6 +3,7 @@ const express = require('express')
 const helmet = require('helmet')
 const nocache = require('nocache')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 const app = express()
 
@@ -35,6 +36,7 @@ connectDB();
 
 // bodyparser
 app.use(express.json({ extended : false}))
+app.use(cookieParser())
 
 // routes
 app.use('/api/contacts', require('./routes/contacts'))
