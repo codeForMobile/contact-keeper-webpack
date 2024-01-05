@@ -1,8 +1,7 @@
-import React, { useReducer, useEffect, useContext } from 'react'
+import React, { useReducer, useContext } from 'react'
 import axios from 'axios'
 import AuthContext from './authContext'
 import authReducer from './authReducer'
-import setAuthToken from '../../utils/setAuthToken'
 
 import {
   REGISTER_SUCCESS,
@@ -80,7 +79,6 @@ import {
 
 const AuthState = (props) => {
   const initialState = {
-    token: localStorage.getItem('token'),
     isAuthenticated: null,
     loading: true,
     error: null,
@@ -88,18 +86,10 @@ const AuthState = (props) => {
   }
   const [state, dispatch] = useReducer(authReducer, initialState)
 
-  // set token on initial app loading
-  setAuthToken(state.token)
-
   // load user on first run or on refresh
   if (state.loading) {
     loadUser(dispatch)
   }
-
-  // 'watch' state.token and set headers and local storage on any change
-  useEffect(() => {
-    setAuthToken(state.token)
-  }, [state.token])
 
   return (
     <AuthContext.Provider value={{ state: state, dispatch }}>

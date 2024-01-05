@@ -75,9 +75,9 @@ router.post('/', [
         id: user.id
       }
     }
-    const token = generateToken(res, payload)
+    generateToken(res, payload)
     res.status(201).json({
-      token
+      msg: 'login success'
     })
   } catch (err) {
     console.error(err.message)

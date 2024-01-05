@@ -2,12 +2,10 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import AlertContext from '../../context/alert/alertContext'
 import { useAuth, clearErrors, register } from '../../context/auth/AuthState'
-//import ReCAPTCHA from "react-google-recaptcha";
 const Register = (props) => {
   const alertContext = useContext(AlertContext)
   const [authState, authDispatch] = useAuth()
   const { error, isAuthenticated} = authState
-  //const [captcha, setCaptcha] = useState(false)
   const { setAlert } = alertContext
 
   useEffect(() => {
@@ -36,8 +34,6 @@ const Register = (props) => {
       setAlert(' Please enter all credentials...', 'danger')
     } else if (password !== password2) {
       setAlert(' Passwords do not match...', 'danger')
-/*     } else if (captcha === false) {
-      setAlert('Please complete captcha validation', 'danger') */
     } else {
       register(authDispatch, {
         name,
@@ -46,9 +42,6 @@ const Register = (props) => {
       })
     }
   }
-/*   const onCaptchaHandler = _ => {
-    setCaptcha({ captcha: true})
-  } */
   if (isAuthenticated) return <Navigate to='/'/>
 
   return (
@@ -84,12 +77,6 @@ const Register = (props) => {
             minLength={6}
             />
           </div>
-          {/* <div >
-            <ReCAPTCHA className='captcha'
-            sitekey='6Lfp4ZgoAAAAAAqruM038WQXYR8yuuOWJjczVORm'
-            onChange={onCaptchaHandler}
-            />
-          </div> */}
           <input type="submit" value="Register" className='btn btn-primary btn-block' />
         </form>
     </div>
