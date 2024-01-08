@@ -17,6 +17,6 @@ Recaptcha2 is to avoid some bored QA taking advantage of it :)
   alt="contacts-manager-webpack"
   style="margin: 0 auto; border-radius:10px"/>
 
-#### Webapp is live at render
+#### cookie based implementation
 
-<a href='https://simplecontacts.onrender.com/login'>contacts-manager</a>
+jwt cookie based implementation is available in branch feature/implement-cookie-auth
